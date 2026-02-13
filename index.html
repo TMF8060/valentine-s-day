@@ -1,63 +1,57 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Ahmed ❤️</title>
 
 <style>
 body {
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to right, #ff9a9e, #fecfef);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Arial', sans-serif;
-    text-align: center;
-    overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background: pink;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+/* Floating hearts */
+.heart {
+  position: fixed;
+  bottom: -10px;
+  font-size: 20px;
+  animation: floatUp 5s linear infinite;
+  color: red;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100vh); opacity: 0; }
 }
 
 .container {
-    background: white;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
-
-h1 {
-    color: #ff4d6d;
-}
-
-button {
-    padding: 15px 30px;
-    margin: 15px;
-    font-size: 18px;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-#yesBtn {
-    background-color: #ff4d6d;
-    color: white;
-}
-
-#yesBtn:hover {
-    background-color: #ff1e4d;
-}
-
-#noBtn {
-    background-color: #ccc;
-    position: absolute;
+  margin-top: 100px;
 }
 
 img {
-    width: 200px;
-    margin-bottom: 20px;
+  width: 250px;
+  border-radius: 20px;
+}
+
+button {
+  padding: 15px 25px;
+  margin: 20px;
+  font-size: 18px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+}
+
+#yesBtn {
+  background: red;
+  color: white;
+}
+
+#noBtn {
+  position: absolute;
 }
 </style>
 </head>
@@ -65,50 +59,45 @@ img {
 <body>
 
 <div class="container">
-    <!-- Placeholder image -->
-    <img src="photo.jpg">
-
-    <h1>Ahmed ❤️</h1>
-    <h2>Will you be my Valentine?</h2>
-
-    <button id="yesBtn" onclick="sayYes()">Yes 💘</button>
-    <button id="noBtn">No 😢</button>
+  <!-- FIRST PAGE PHOTO -->
+  <img src="photo1.jpg">
+  <h1>Ahmed ❤️</h1>
+  <h2>Will you be my Valentine?</h2>
+  <button id="yesBtn" onclick="yesClicked()">Yes 💕</button>
+  <button id="noBtn">No 😢</button>
 </div>
 
-<!-- Placeholder music -->
-<audio id="bgMusic" loop>
-    <source src="YOUR_MUSIC_LINK_HERE" type="audio/mpeg">
-</audio>
-
 <script>
+
+/* Floating hearts generator */
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 20 + 10 + "px";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 5000);
+}, 300);
+
+/* No button runs away */
 const noBtn = document.getElementById("noBtn");
-const yesBtn = document.getElementById("yesBtn");
-const music = document.getElementById("bgMusic");
-
-document.body.addEventListener("click", function() {
-    music.play().catch(() => {});
-}, { once: true });
-
-noBtn.addEventListener("mouseover", function() {
-    const x = Math.random() * window.innerWidth;
-    const y = Math.random() * window.innerHeight;
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
+noBtn.addEventListener("mouseover", () => {
+  noBtn.style.left = Math.random() * window.innerWidth + "px";
+  noBtn.style.top = Math.random() * window.innerHeight + "px";
 });
 
-function sayYes() {
-    document.body.innerHTML = `
-        <div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#ff9a9e;text-align:center;">
-            <div>
-                <h1 style="color:white;font-size:50px;">YAYYYYY!!! 💕</h1>
-                <p style="color:white;font-size:24px;">I love you so much Hamoudi Moudiiii ❤️</p>
-            </div>
-        </div>
-    `;
+/* YES page */
+function yesClicked() {
+  document.body.innerHTML = `
+  <div style="background:pink;height:100vh;text-align:center;padding-top:100px;">
+    <img src="photo2.jpg" style="width:300px;border-radius:20px;">
+    <h1 style="color:red;font-size:50px;">YAYYYY 💖</h1>
+    <h2>I love you so much Ahmed ❤️</h2>
+  </div>
+  `;
 }
 </script>
 
 </body>
 </html>
-
-
